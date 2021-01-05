@@ -1,0 +1,12 @@
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\bin\Debug\CGI.ParkingLot.ConsolaApp.DTO.dll
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\bin\Debug\CGI.ParkingLot.ConsolaApp.DTO.pdb
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\obj\Debug\CGI.ParkingLot.ConsoleApp.DTO.csproj.CoreCompileInputs.cache
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\obj\Debug\CGI.ParkingLot.ConsolaApp.DTO.dll
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\obj\Debug\CGI.ParkingLot.ConsolaApp.DTO.pdb
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\obj\Debug\CGI.ParkingLot.ConsoleApp.DTO.csprojAssemblyReference.cache
+C:\Users\briton.kelley\Desktop\BootCamper8\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\bin\Debug\CGI.ParkingLot.ConsolaApp.DTO.dll
+C:\Users\briton.kelley\Desktop\BootCamper8\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\bin\Debug\CGI.ParkingLot.ConsolaApp.DTO.pdb
+C:\Users\briton.kelley\Desktop\BootCamper8\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\obj\Debug\CGI.ParkingLot.ConsoleApp.DTO.csprojAssemblyReference.cache
+C:\Users\briton.kelley\Desktop\BootCamper8\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\obj\Debug\CGI.ParkingLot.ConsoleApp.DTO.csproj.CoreCompileInputs.cache
+C:\Users\briton.kelley\Desktop\BootCamper8\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\obj\Debug\CGI.ParkingLot.ConsolaApp.DTO.dll
+C:\Users\briton.kelley\Desktop\BootCamper8\CGI.ParkingLot.Console.UI\CGI.ParkingLot.ConsolaApp.DTO\obj\Debug\CGI.ParkingLot.ConsolaApp.DTO.pdb

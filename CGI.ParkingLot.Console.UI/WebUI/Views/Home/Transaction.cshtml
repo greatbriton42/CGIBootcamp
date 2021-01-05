@@ -1,0 +1,36 @@
+﻿@model List<TransactionDTO>
+
+@{
+    ViewBag.Title = "Transaction";
+}
+
+<h2>Transactions</h2>
+
+<style type="text/css">
+    table.space {
+    }
+
+    td {
+        padding: 10px;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr style="font-weight:bold">
+            <td>Parking Spot ID</td>
+            <td>Time In</td>
+            <td>Time Out</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tran in Model)
+        {
+        <tr>
+            <td>@($"{tran.ParkingSpotID}")</td>
+            <td>@($"{tran.TimeIn}")</td>
+            <td>@(string.Format("{0}", tran.TimeOut!=null?tran.TimeOut.ToString():"Not Checked Out"))</td>
+        </tr>
+        }
+    </tbody>
+</table>

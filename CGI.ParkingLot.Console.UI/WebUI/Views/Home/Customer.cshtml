@@ -1,0 +1,39 @@
+﻿@model List<CustomerDTO>
+
+
+@{
+    ViewBag.Title = "Customer";
+}
+
+<h2>Customer</h2>
+
+<style type="text/css">
+    table.space {
+    }
+    td{
+        padding:10px;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr style="font-weight:bold">
+            <td>Customer ID</td>
+            <td>Full Name</td>
+            <td>State</td>
+            <td>Phone</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cust in Model)
+        {
+            <tr>
+                <td>@($"{cust.CustomerID}")</td>
+                <td>@($"{cust.FirstName} {cust.LastName}")</td>
+                <td>@($"{cust.StateInitial}")</td>
+                <td>@($"{cust.PhoneNumber}")</td>
+                <td><button onclick= "location.href = '@Url.Action("Transaction", "Home", new { customerID = cust.CustomerID })';">Transaction</button></td>
+            </tr>
+        }
+    </tbody>
+</table>

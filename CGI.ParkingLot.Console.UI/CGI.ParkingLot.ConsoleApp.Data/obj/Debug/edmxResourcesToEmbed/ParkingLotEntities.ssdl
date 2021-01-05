@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ParkingLotModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressKey" />
+    </Key>
+    <Property Name="AddressKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="9" Nullable="false" />
+    <Property Name="CurrentAddress" Type="bit" Nullable="false" />
+    <Property Name="CustomerKey" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerKey" />
+    </Key>
+    <Property Name="CustomerKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="char" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KeyCard">
+    <Key>
+      <PropertyRef Name="KeyCardKey" />
+    </Key>
+    <Property Name="KeyCardKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerKey" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ExpiredDate" Type="smalldatetime" />
+    <Property Name="ActivationDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="KeyCardNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lot">
+    <Key>
+      <PropertyRef Name="LotKey" />
+    </Key>
+    <Property Name="LotKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PricePerHour" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ParkingSpot">
+    <Key>
+      <PropertyRef Name="ParkingSpotKey" />
+    </Key>
+    <Property Name="ParkingSpotKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LotKey" Type="int" Nullable="false" />
+    <Property Name="Label" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LotHourlyRate">
+    <Key>
+      <PropertyRef Name="LotHourlyRateKey" />
+    </Key>
+    <Property Name="LotHourlyRateKey" Type="int" Nullable="false" />
+    <Property Name="LotKey" Type="int" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="ActivationDate" Type="datetime" />
+    <Property Name="Rate" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionRecord">
+    <Key>
+      <PropertyRef Name="TransactionKey" />
+    </Key>
+    <Property Name="TransactionKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParkingSpotKey" Type="int" Nullable="false" />
+    <Property Name="TimeIn" Type="smalldatetime" Nullable="false" />
+    <Property Name="TimeOut" Type="smalldatetime" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="KeyCardKey" Type="int" Nullable="false" />
+    <Property Name="RateKey" Type="int" />
+  </EntityType>
+  <Association Name="FK_Customer_CustomerKey_Addresss_CustomerKey">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerKey" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="CustomerKey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_CustomerKey_KeyCard_CustomerKey">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="KeyCard" Type="Self.KeyCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerKey" />
+      </Principal>
+      <Dependent Role="KeyCard">
+        <PropertyRef Name="CustomerKey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KeyCard_KeyCardKey_TransactionRecord_KeyCardKey">
+    <End Role="KeyCard" Type="Self.KeyCard" Multiplicity="1" />
+    <End Role="TransactionRecord" Type="Self.TransactionRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KeyCard">
+        <PropertyRef Name="KeyCardKey" />
+      </Principal>
+      <Dependent Role="TransactionRecord">
+        <PropertyRef Name="KeyCardKey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lot_LotKey_LotHourlyRate_LotKey">
+    <End Role="Lot" Type="Self.Lot" Multiplicity="0..1" />
+    <End Role="LotHourlyRate" Type="Self.LotHourlyRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lot">
+        <PropertyRef Name="LotKey" />
+      </Principal>
+      <Dependent Role="LotHourlyRate">
+        <PropertyRef Name="LotKey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lot_LotKey_ParkingSpot_LotKey">
+    <End Role="Lot" Type="Self.Lot" Multiplicity="1" />
+    <End Role="ParkingSpot" Type="Self.ParkingSpot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lot">
+        <PropertyRef Name="LotKey" />
+      </Principal>
+      <Dependent Role="ParkingSpot">
+        <PropertyRef Name="LotKey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ParkingSpot_ParkingSpotKey_TransactionRecord_TransactionKey">
+    <End Role="ParkingSpot" Type="Self.ParkingSpot" Multiplicity="1" />
+    <End Role="TransactionRecord" Type="Self.TransactionRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ParkingSpot">
+        <PropertyRef Name="ParkingSpotKey" />
+      </Principal>
+      <Dependent Role="TransactionRecord">
+        <PropertyRef Name="ParkingSpotKey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionRecord_RateKey_LotHourlyRate_LotHourlyRateKey">
+    <End Role="LotHourlyRate" Type="Self.LotHourlyRate" Multiplicity="0..1" />
+    <End Role="TransactionRecord" Type="Self.TransactionRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LotHourlyRate">
+        <PropertyRef Name="LotHourlyRateKey" />
+      </Principal>
+      <Dependent Role="TransactionRecord">
+        <PropertyRef Name="RateKey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ParkingLotModelStoreContainer">
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="Customer" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="Customer" store:Type="Tables" />
+    <EntitySet Name="KeyCard" EntityType="Self.KeyCard" Schema="Customer" store:Type="Tables" />
+    <EntitySet Name="Lot" EntityType="Self.Lot" Schema="Property" store:Type="Tables" />
+    <EntitySet Name="ParkingSpot" EntityType="Self.ParkingSpot" Schema="Property" store:Type="Tables" />
+    <EntitySet Name="LotHourlyRate" EntityType="Self.LotHourlyRate" Schema="Record" store:Type="Tables" />
+    <EntitySet Name="TransactionRecord" EntityType="Self.TransactionRecord" Schema="Record" store:Type="Tables" />
+    <AssociationSet Name="FK_Customer_CustomerKey_Addresss_CustomerKey" Association="Self.FK_Customer_CustomerKey_Addresss_CustomerKey">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_CustomerKey_KeyCard_CustomerKey" Association="Self.FK_Customer_CustomerKey_KeyCard_CustomerKey">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="KeyCard" EntitySet="KeyCard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KeyCard_KeyCardKey_TransactionRecord_KeyCardKey" Association="Self.FK_KeyCard_KeyCardKey_TransactionRecord_KeyCardKey">
+      <End Role="KeyCard" EntitySet="KeyCard" />
+      <End Role="TransactionRecord" EntitySet="TransactionRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lot_LotKey_LotHourlyRate_LotKey" Association="Self.FK_Lot_LotKey_LotHourlyRate_LotKey">
+      <End Role="Lot" EntitySet="Lot" />
+      <End Role="LotHourlyRate" EntitySet="LotHourlyRate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lot_LotKey_ParkingSpot_LotKey" Association="Self.FK_Lot_LotKey_ParkingSpot_LotKey">
+      <End Role="Lot" EntitySet="Lot" />
+      <End Role="ParkingSpot" EntitySet="ParkingSpot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ParkingSpot_ParkingSpotKey_TransactionRecord_TransactionKey" Association="Self.FK_ParkingSpot_ParkingSpotKey_TransactionRecord_TransactionKey">
+      <End Role="ParkingSpot" EntitySet="ParkingSpot" />
+      <End Role="TransactionRecord" EntitySet="TransactionRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionRecord_RateKey_LotHourlyRate_LotHourlyRateKey" Association="Self.FK_TransactionRecord_RateKey_LotHourlyRate_LotHourlyRateKey">
+      <End Role="LotHourlyRate" EntitySet="LotHourlyRate" />
+      <End Role="TransactionRecord" EntitySet="TransactionRecord" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

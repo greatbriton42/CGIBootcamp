@@ -1,0 +1,37 @@
+﻿@model ProjectDetailOverviewVM
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4 details-overview">
+                <label>Project Number:</label>
+                <input readonly value="@Model.ProjectNumber" />
+            </div>
+            <div class="col-md-4 details-overview">
+                <label>Project Name:</label>
+                <input readonly value="@Model.ProjectName" />
+            </div>
+            <div class="col-md-4 details-overview">
+                <label>Project Completion:</label>
+                <input readonly value="@Html.DisplayFor(x => @Model.ProjectCompletion)" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 details-overview">
+                <label>Project Color:</label>
+                <input readonly style="background-color:@Model.RatingColor" value="@Model.RatingText" />
+            </div>
+            <div class="col-md-4 details-overview">
+                <label>Project Health:</label>
+                <input readonly style="background-color:@Model.ProjectHealth" />
+            </div>
+            <div class="col-md-4 details-overview">
+                <label>% Capital Budget Spent:</label>
+                <input readonly value="@Html.DisplayFor(x => Model.PercentCapitalSpent)" />
+            </div>
+        </div>
+            <div class="row details-overview">
+                <a href="@Model.ProjectDirectory">@Model.ProjectDirectory</a>
+            </div>
+        </div>
+</div>

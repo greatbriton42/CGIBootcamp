@@ -1,0 +1,61 @@
+﻿@model int?
+@{
+   ViewBag.Title = "ProjectMaintenance";
+}
+<div class="page-title">
+    <h1>Project Maintenance</h1>
+</div>
+<div>
+    <ul id="maintenanceTabsList" class="nav nav-tabs maintenance-tabs">
+        <li id="detailli" role="presentation" class="active"><a id="detailsTab" href="#">Details</a></li>
+        <li role="presentation"><a href="#">Project Status</a></li>
+        <li role="presentation"><a href="#">Milestones</a></li>
+        <li role="presentation"><a href="#">Issues</a></li>
+        <li role="presentation"><a href="#">Risks</a></li>
+        <li role="presentation"><a href="#">Financial Information</a></li>
+        <li id="teamli" role="presentation"><a id="teamTab" href="#">Team</a></li>
+        <li role="presentation"><a href="#">Lessons Learned</a></li>
+    </ul>
+    <div class="main-content-container row maintenance-content">
+        <div id="selectedTab">
+            @{Html.RenderAction("ProjectDetails", new { projectId = Model }); }
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    $('#detailsTab').on("click", function detailsTab(e) {
+        e.preventDefault();
+        $("li").removeClass("active");
+        $("#detailli").addClass("active");
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("ProjectDetails", new {projectId = Model })',
+            success: function (data) {
+                $("#selectedTab").html(data);
+            }
+        });
+    });
+
+    $('#teamTab').on("click", function teamTab(e) {
+        if (@Model != 0) {
+            e.preventDefault();
+            $("li").removeClass("active");
+            $("#teamli").addClass("active");
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("ProjectTeam", new {projectId = Model })',
+                success: function (data) {
+                    $("#selectedTab").html(data);
+                },
+                error: function () {
+                    window.location.href = '@Url.Action("Error", "Error")';
+                }
+            });
+        }
+    });
+
+</script>
+

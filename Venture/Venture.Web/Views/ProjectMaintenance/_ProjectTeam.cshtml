@@ -1,0 +1,10 @@
+﻿@model int?
+
+
+<div>
+    @{Html.RenderAction("ProjectDetailOverview", new { projectId = Model}); }
+</div>
+
+<div id="teamList">
+    @{Html.RenderAction("ProjectTeamList", new { projectId = Model});}
+</div>

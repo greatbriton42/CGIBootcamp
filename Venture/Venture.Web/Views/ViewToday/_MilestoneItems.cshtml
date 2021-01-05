@@ -1,0 +1,52 @@
+﻿@model PaginateVM<UpcomingMilestoneDTO, UpcomingMilestonesVM>
+
+<div class="row view-today-section">
+    <div class="col-md-12 text-center">
+        <h3 class="table-header">Upcoming Milestones</h3>
+        <table id="milestoneTable" class="table-condensed table-sortable">
+            <thead>
+                <tr>
+                    <th data-sortkey="ProjectName">Project</th>
+                    <th data-sortkey="Milestone">Milestone</th>
+                    <th data-sortkey="BaselineStart" class="date-min">Baseline Start</th>
+                    <th data-sortkey="BaselineFinish" class="date-min">Baseline Finish</th>
+                    <th data-sortkey="ActualStart" class="date-min">Actual Start</th>
+                    <th data-sortkey="ActualFinish" class="date-min">Actual Finish</th>
+                    <th>% Complete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var records in Model.Records)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(@records.ProjectName, "")</td>
+                        <td>@records.Milestone</td>
+                        <td>@Html.DisplayFor(m => records.BaselineStart)</td>
+                        <td>@Html.DisplayFor(m => records.BaselineFinish)</td>
+                        <td>@Html.DisplayFor(m => records.ActualStart)</td>
+                        <td>@Html.DisplayFor(m => records.ActualFinish)</td>
+                        <td>@records.PercentComplete</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="pagination pagination-right pagination-footer"><ul class="pagination"></ul></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var itemTable = $('#milestoneTable').paginate({
+        url: '@Url.Action("UpcomingMilestones")',
+        targetId: 'milestoneItems',
+        sort: '@Model.Criteria.Sort',
+        order: '@Model.Criteria.Order',
+        page: @Model.Criteria.Page,
+        filter: '@Model.Criteria.Filter',
+        hasPrevious: @Json.Encode(Model.Criteria.HasPreviousPage),
+        hasNext: @Json.Encode(Model.Criteria.HasNextPage),
+        totalPages: @Model.Criteria.PageCount,
+        numericPageCount: 5,
+        showEllipse: true
+    });
+</script>
+

@@ -1,0 +1,63 @@
+﻿@model PaginateVM<MyProjectDTO, MyProjectsVM>
+
+
+@if(Model.Criteria.TotalItemCount > 25)
+{
+    Html.RenderAction("EmptyTable");
+    <h4 class="refine-search-message">Your search returned more than 25 records.  Please refine your search.</h4>
+}
+else if(Model.Criteria.TotalItemCount == 0)
+{
+     Html.RenderAction("EmptyTable");
+    <h4 class="refine-search-message">Your search did not return any records.  Please refine your search.</h4>
+}
+else
+{
+<div class="col-md-12 text-center">
+    <table id="myProjectTable" class="table-condensed table-sortable">
+        <thead>
+            <tr>
+                <th data-sortkey="ProjectNumber">Project Number</th>
+                <th data-sortkey="ProjectName">Project Name</th>
+                <th>Status Update</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var records in Model.Records)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(@records.ProjectNumber, "ProjectMaintenance", "ProjectMaintenance",
+                   new { projectId = records.ProjectId }, null)
+                    </td>
+                    <td>@records.ProjectName</td>
+                    <td style="text-align: center;">
+                        @if(!records.StatusUpdate.Equals(EnumTypes.StatusUpdateFlag.None))
+                        {
+                            <i class="fas fa-flag fa-2x" style="color:@records.StatusUpdate.ToString()"></i>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="pagination pagination-right pagination-footer"><ul class="pagination"></ul></div>
+</div>
+
+    <script type="text/javascript">
+    var itemTable = $('#myProjectTable').paginate({
+        url: '@Url.Action("MyProjectsTable")',
+        targetId: 'myProjects',
+        sort: '@Model.Criteria.Sort',
+        order: '@Model.Criteria.Order',
+        page: @Model.Criteria.Page,
+        filter: '@Html.Raw(Model.Criteria.Filter)',
+        hasPrevious: @Json.Encode(Model.Criteria.HasPreviousPage),
+        hasNext: @Json.Encode(Model.Criteria.HasNextPage),
+        totalPages: @Model.Criteria.PageCount,
+        numericPageCount: 5,
+        showEllipse: true
+    });
+    </script>
+}

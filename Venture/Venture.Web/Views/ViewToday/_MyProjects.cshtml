@@ -1,0 +1,48 @@
+﻿
+
+    <div class="row view-today-section">
+        <h3 class="table-header">My Projects</h3>
+        <div class="col-md-12">
+            <div class="row">
+                <form id="myProjectsForm" class="col-md-5 my-projects">
+                    <div class="row">
+                        <label>Project Number:</label><input id="projectNumber" name="ProjectNumber" pattern="\d{4}-\d{1,}" title="dddd-d*" />
+                    </div>
+                    <div class="row" id="myProjectsNameSearch">
+                        <label>Project Name:</label><input id="projectName" name="ProjectName" />
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div hidden id="searchAlert" class="alert alert-danger alert-dismissible row col-md-5" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong> Please enter at least one search parameter.
+            </div>
+
+            <div id="myProjects">
+                @{Html.RenderAction("EmptyTable");}
+            </div>
+        </div>
+    </div>
+
+<script>
+    $('#myProjectsForm').submit(function (e) {
+        e.preventDefault();
+        var name = $('#projectName').val();
+        var number = $('#projectNumber').val();
+        if (name == '' && number == '') {
+            $('#searchAlert').show();
+        }
+        else {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("MyProjectsTable")',
+                data: $('#myProjectsForm').serialize(),
+                success: function (data) {
+                    $("#myProjects").html(data);
+                    $('#searchAlert').hide();
+                }
+            })
+        }
+    })
+</script>

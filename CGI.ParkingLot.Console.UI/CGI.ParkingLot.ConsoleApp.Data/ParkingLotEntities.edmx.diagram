@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6630748bc8f748469febd89bcd3e821a" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="ParkingLotModel.Address" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingLotModel.Customer" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingLotModel.KeyCard" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingLotModel.Lot" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingLotModel.ParkingSpot" Width="1.5" PointX="0.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingLotModel.TransactionRecord" Width="1.5" PointX="6.25" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="ParkingLotModel.FK_Customer_CustomerKey_Addresss_CustomerKey" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingLotModel.FK_Customer_CustomerKey_KeyCard_CustomerKey" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingLotModel.FK_KeyCard_KeyCardKey_TransactionRecord_KeyCardKey" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingLotModel.FK_Lot_LotKey_ParkingSpot_LotKey" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingLotModel.FK_ParkingSpot_ParkingSpotKey_TransactionRecord_TransactionKey" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ParkingLotModel.LotHourlyRate" Width="1.5" PointX="8.125" PointY="8.375" />
+        <AssociationConnector Association="ParkingLotModel.FK_Lot_LotKey_LotHourlyRate_LotKey" />
+        <AssociationConnector Association="ParkingLotModel.FK_TransactionRecord_RateKey_LotHourlyRate_LotHourlyRateKey" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

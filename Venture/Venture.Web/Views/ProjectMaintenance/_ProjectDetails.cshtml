@@ -1,0 +1,129 @@
+﻿@model ProjectDetailsVM
+
+<div>
+    <form id="projectDetailsForm" name="projectDetailsForm" method="post" action="@Url.Action("SaveDetails", "ProjectMaintenance")">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4 details-inputs">
+                        @Html.HiddenFor(x => Model.ProjectId)
+                        @Html.LabelFor(x => Model.ProjectNumber)
+                        @Html.TextBoxFor(x => Model.ProjectNumber, new { @readonly = "readonly" })
+                    </div>
+                    <div class="col-md-8 details-inputs">
+                        @Html.LabelFor(x => Model.ProjectName)
+                        @Html.TextBoxFor(x => Model.ProjectName)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 details-inputs">
+                        @Html.LabelFor(x => Model.ProjectStatus)
+                        @Html.TextBoxFor(x => Model.ProjectStatus, new { @readonly = "readonly" })
+                    </div>
+                    <div class="col-md-4 details-inputs">
+                        @Html.LabelFor(x => Model.ProjectCompletion)
+                        @Html.TextBoxFor(x => Model.ProjectCompletion, new { @readonly = "readonly" })
+                    </div>
+                    <div class="col-md-4 details-inputs">
+                        @Html.LabelFor(x => Model.AddToWatchlist)
+                        @Html.CheckBox("AddToWatchlist")
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 details-inputs">
+                        @Html.LabelFor(x => Model.ProjectGoalId)
+                        @Html.DropDownList("ProjectGoalId", new SelectList(Model.ProjectGoals, "ProjectGoalId", "ProjectGoal", selectedValue: Model.ProjectGoalId))
+                    </div>
+                    <div class="col-md-4 details-inputs">
+                        @Html.LabelFor(x => Model.ProjectLevelId)
+                        @Html.DropDownList("ProjectLevelId", new SelectList(Model.ProjectLevels, "ProjectLevelId", "ProjectLevel", selectedValue: Model.ProjectLevelId))
+                    </div>
+                    <div class="col-md-4 details-inputs">
+                        @Html.LabelFor(x => Model.ProjectIndicatorId)
+                        @Html.DropDownList("ProjectIndicatorId", new SelectList(Model.Indicators, "IndicatorId", "ProjectIndicator", selectedValue: Model.ProjectIndicatorId))
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 details-inputs">
+                        @Html.LabelFor(x => Model.ProjectRatingText)
+                        @Html.TextBoxFor(x => Model.ProjectRatingText, new { @readonly = "readonly", style = "background-color: " + @Model.RatingColor })
+                    </div>
+                    <div class="col-md-4 details-inputs">
+                        @Html.LabelFor(x => Model.ProjectHealth)
+                        @Html.DropDownList("ProjectHealth", new SelectList(Enum.GetValues(typeof(EnumTypes.ProjectHealthColor)),
+                                                         selectedValue: Model.ProjectHealth), new { style = "background-color: " + @Model.ProjectHealth })
+                    </div>
+                    <div class="col-md-4 details-inputs">
+                        @Html.LabelFor(x => Model.PreviousHealthColor)
+                        @Html.HiddenFor(x => Model.PreviousHealthColor)
+                        <input type="text" readonly style="background-color: @Model.PreviousHealthColor"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 details-inputs">
+                        @Html.LabelFor(x => Model.LOBId)
+                        @Html.DropDownList("LOBId", new SelectList(Model.LOBs, "LOBId", "LOB", selectedValue: Model.LOBId))
+                    </div>
+                    <div class="col-md-8 details-inputs">
+                        @Html.LabelFor(x => Model.DepartmentId)
+                        @Html.DropDownList("DepartmentId", new SelectList(Model.Departments, "DepartmentId", "Department", selectedValue: Model.DepartmentId))
+                    </div>
+                </div>
+                <div class="row">
+                    @Html.ValidationSummary();
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h3 class="table-header">Project Description</h3>
+            <div class="project-description col-md-11" style="margin-right: 10px;">
+                <div class="row">
+                    <div class="col-md-12 text-right details-inputs">
+                        @Html.LabelFor(x => Model.BusinessIssue)
+                        @Html.TextBoxFor(x => Model.BusinessIssue)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right details-inputs">
+                        @Html.LabelFor(x => Model.Solution)
+                        @Html.TextBoxFor(x => Model.Solution)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right details-inputs">
+                        @Html.LabelFor(x => Model.Benefits)
+                        @Html.TextBoxFor(x => Model.Benefits)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right details-inputs">
+                        @Html.LabelFor(x => Model.ProjectDirectory)
+                        @Html.TextBoxFor(x => Model.ProjectDirectory)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $('#previousHealths').change(function () {
+        $(this).css({ backgroundColor: $(this).val() });
+    });
+
+    $('#ProjectHealth').change(function () {
+        $(this).css({ backgroundColor: $(this).val() });
+    });
+
+    $('#ProjectHealth > option').each(function () {
+        $(this).css({ backgroundColor: $(this).val() });
+        $(this).attr("value", $(this).val());
+        $(this).text("");
+    });
+
+    $('#PreviousHealthColor').attr("text", "");
+
+    $("#projectDetailsForm :input").change(function () {
+        $("#projectDetailsForm").data("changed", true);
+    });
+</script>

@@ -1,0 +1,7 @@
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.Console.UI\bin\Debug\CGI.ParkingLot.Console.UI.exe.config
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.Console.UI\bin\Debug\CGI.ParkingLot.Console.UI.exe
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.Console.UI\bin\Debug\CGI.ParkingLot.Console.UI.pdb
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.Console.UI\obj\Debug\CGI.ParkingLot.Console.UI.csprojAssemblyReference.cache
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.Console.UI\obj\Debug\CGI.ParkingLot.Console.UI.csproj.CoreCompileInputs.cache
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.Console.UI\obj\Debug\CGI.ParkingLot.Console.UI.exe
+C:\Users\briton.kelley\source\repos\CGI.ParkingLot.Console.UI\CGI.ParkingLot.Console.UI\obj\Debug\CGI.ParkingLot.Console.UI.pdb

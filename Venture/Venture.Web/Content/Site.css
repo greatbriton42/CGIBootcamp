@@ -1,0 +1,231 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 100%;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*Top Bar Styling*/
+.top-bar {
+    background-color: #eadaa6;
+    width: 75%;
+    float: right;
+}
+.top-bar-buttons button {
+    background-color: inherit;
+    border-right: 1px gray;
+    border-style: solid;
+    border-color: gray;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+    margin: 2px;
+}
+
+/*Sidebar Styling*/
+.sidebar-container{
+    background-color: #dee6c1;
+    height:100%;
+}
+.sidebar-header {
+    background-color: #88ba01;
+    text-align: center;
+}
+.sidebar-body {
+    padding-left: 15%;
+    padding-right: 3%
+}
+.page-title {
+    text-align: center;
+    font-weight: bolder;
+}
+
+/*Area for main content*/
+.venture-page h1{
+    background-color: #bfa87c;
+    padding-left: 0;
+    margin-left: 1%;
+    margin-right: 1%
+}
+
+.main-content-container{
+    background-color: #f2f2f2;
+    border: 1px solid #000000;
+    margin-top: 0px;
+}
+
+
+
+/* Setting table styling*/
+table {
+    border-collapse: collapse;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin: auto;
+}
+.table-header {
+    text-align: center; 
+    border-top: 2px solid gray;
+    margin: 3%;
+    
+}
+table, th{
+    background-color: #88ba01;
+}
+
+table, td {
+    background-color: white;
+    overflow: hidden; 
+    text-overflow:ellipsis; 
+    white-space: nowrap; 
+    max-width: 225px;
+    min-width: 50px;
+    font-size: 13px;
+    text-align: left;
+}
+
+table td, th {
+    border: 1px solid #000000;
+}
+
+/*View Today*/
+.empty-table{
+    min-width: 70%;
+}
+
+.my-projects
+button {
+    background-color: #88ba01;
+    margin-left: 5%;
+}
+
+.my-projects
+input {
+    background-color: white;
+    margin: 3px;
+}
+
+.my-projects {
+    margin: 0 0 1% 16%;
+}
+
+#myProjectsNameSearch {
+    padding-left: 3%;
+}
+
+#searchAlert{
+    margin-top: 2%;
+    margin-left: 16%;
+}
+#myProjects{
+    margin-bottom: 3%;
+}
+
+#myProjectTable {
+    min-width: 70%;
+}
+
+.refine-search-message{
+    margin-left:15%;
+}
+.target-date{
+    min-width: 100px;
+}
+.date-min{
+    min-width: 115px;
+}
+/*Project Mantenance*/
+.maintenance-content {
+    padding: 15px 15px 0 15px;
+    margin: 0 0px 0 0px;
+}
+
+.maintenance-tabs a {
+    background-color: #578602;
+    color: white;
+    margin: 1px;
+}
+.maintenance-tabs{
+    border: none;
+}
+
+.active a {
+    background-color: #88ba01 !important;
+    border: 1px solid #88ba01 !important;
+}
+/*Project Details*/
+.details-inputs{
+    padding-right: 3%;
+    margin: 4px 0 4px 0;
+    text-align: right;
+}
+
+.project-description
+input {
+    min-width: 89%;
+    height: 75px;
+}
+
+.project-description {
+    float: right;
+}
+
+.details-inputs
+select{
+    width: 174px;
+}
+
+#ProjectName{
+    min-width: 75% ;
+}
+
+#ProjectDirectory{
+    height: 30px;
+    margin: 0 0 30px 0;
+}
+/*Project Team*/
+
+.details-overview {
+    padding-right: 3%;
+    margin: 6px 0 4px 0;
+    text-align: right;
+}
+
+.teamtab-button
+button {
+    background-color: #88ba01;
+    width: 80%;
+}
+.teamtab-button
+input {
+    background-color: #88ba01;
+    width: 80%;
+}
+.teamtab-button{
+    margin: 10px 0 50px 0;
+}
+.teamlist-table{
+    min-width: 65%;
+}
+
+

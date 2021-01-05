@@ -1,0 +1,53 @@
+﻿@model PaginateVM<ProjectTrackingItemsDTO, ProjectTrackingItemsVM>
+
+    <div class="row">
+        <h3 class="table-header">Project Tracking Items</h3>
+        <div class="table-wrapper col-md-12 text-center">
+            <table id="trackingItemsTable" class="table-condensed table-sortable">
+                <thead>
+                    <tr>
+                        <th data-sortkey="ProjectName">Project Name</th>
+                        <th data-sortkey="IssueId">ID #</th>
+                        <th data-sortkey="IssueType">Type</th>
+                        <th>Issue</th>
+                        <th data-sortkey="AssignedTo">Assigned To</th>
+                        <th data-sortkey="TargetDate" class="target-date">Target Date</th>
+                        <th data-sortkey="Status">Status</th>
+                        <th>Next Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var records in Model.Records)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(@records.ProjectName, "ProjectMaintenance", "ProjectMaintenance", new { projectId = records.ProjectID }, null)</td>
+                            <td>@records.IssueId</td>
+                            <td>@records.IssueType</td>
+                            <td>@records.Issue</td>
+                            <td>@records.AssignedTo</td>
+                            <td>@Html.DisplayFor(x => @records.TargetDate)</td>
+                            <td>@records.Status</td>
+                            <td>@records.NextAction</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="pagination pagination-right pagination-footer"><ul class="pagination"></ul></div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    var itemTable = $('#trackingItemsTable').paginate({
+        url: '@Url.Action("TrackingItems")',
+        targetId: 'trackingItems',
+        sort: '@Model.Criteria.Sort',
+        order: '@Model.Criteria.Order',
+        page: @Model.Criteria.Page,
+        filter: '@Model.Criteria.Filter',
+        hasPrevious: @Json.Encode(Model.Criteria.HasPreviousPage),
+        hasNext: @Json.Encode(Model.Criteria.HasNextPage),
+        totalPages: @Model.Criteria.PageCount,
+        numericPageCount: 5,
+        showEllipse: true
+    });
+</script>

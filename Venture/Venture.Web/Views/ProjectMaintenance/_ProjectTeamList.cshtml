@@ -1,0 +1,150 @@
+﻿@model TeamTabVM
+<div class="row">
+    <h3 class="table-header">Project Team</h3>
+    <div class="table-wrapper col-md-12 text-center">
+        <table id="teamListTable" class="table-condensed table-sortable teamlist-table">
+            <thead>
+                <tr>
+                    <th data-sortkey="Role">Role</th>
+                    <th data-sortkey="Resource">Resource</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var member in Model.Paginate.Records)
+                {
+                    <tr>
+                        <td><a style="cursor:pointer" onclick="editUser(@member.RoleId, @member.ResourceId, @member.ProjectTeamId)">@member.Role</a></td>
+                        <td>@member.Resource</td>
+                        <td>@member.Phone</td>
+                        <td><a href="mailto:@member.Email">@member.Email</a></td>
+                        <td style="text-align: center;">
+                            <button onclick="deleteUser(@member.ProjectTeamId)">
+                                <i class="fas fa-times fa-2x" style="color: darkred"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="pagination pagination-right pagination-footer"><ul class="pagination"></ul></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-5 text-right">
+                <label>Role:</label>
+                <select id="role" name="resource" value="">
+                    @foreach(var role in Model.RoleList)
+                    {
+                        <option value="@role.TeamRoleID">@role.TeamRole</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3 text-center">
+                <label>Resource:</label>
+                <select id="resource" name="resource" value="">
+                    @foreach(var resource in Model.ResourceList)
+                    {
+                        <option value="@resource.ResourceID">@resource.ResourceName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row teamtab-button">
+            <div class="col-md-2 col-md-offset-2 text-right">
+                <input id="projectTeamId" type="hidden" , value="0" />
+                <input value="Insert" type="button" class="btn btn success" id="insertUpdate" />
+            </div>
+            <div class="col-md-2 text-center">
+                <button class="btn btn success" id="cancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var itemTable = $('#teamListTable').paginate({
+        url: '@Url.Action("ProjectTeamList", new {projectId = Model.projectId })',
+        targetId: 'teamList',
+        sort: '@Model.Paginate.Criteria.Sort',
+        order: '@Model.Paginate.Criteria.Order',
+        page: @Model.Paginate.Criteria.Page,
+        filter: '@Model.Paginate.Criteria.Filter',
+        hasPrevious: @Json.Encode(Model.Paginate.Criteria.HasPreviousPage),
+        hasNext: @Json.Encode(Model.Paginate.Criteria.HasNextPage),
+        totalPages: @Model.Paginate.Criteria.PageCount,
+        numericPageCount: 5,
+        showEllipse: true
+    });
+
+    function deleteUser(id) {
+        if (confirm("Are you sure you want to delete this Team Member?"))
+        {
+            $.ajax({
+                url: '@Url.Action("DeleteTeamMember")',
+                data: {'projectTeamId' : id},
+                success: function (data) {
+                    $('#teamTab').click();
+                },
+                //error: function (jqXHR, exception) {
+                //    alert(jqXHR.status + jqXHR.statusText);
+                //}
+            });
+        }
+    };
+
+    $('#insertUpdate').on("click", function () {
+        if ($('#insertUpdate').val() == 'Insert') {
+            var roleId = $('#role').val();
+            var resourceId = $('#resource').val();
+            $.ajax({
+                url: '@Url.Action("InsertTeamMember")',
+                type: 'POST',
+                data: { 'projectId': @Model.projectId, 'roleId': roleId, 'resourceId': resourceId },
+                success: function (data) {
+                    if (!data == "") {
+                        alert(data);
+                    }
+                    $('#teamTab').click();
+                },
+            });
+        }
+        else {
+            var roleId = $('#role').val();
+            var resourceId = $('#resource').val();
+            var projectTeamId = $('#projectTeamId').val();
+            $.ajax({
+                url: '@Url.Action("UpdateTeamMember")',
+                type: 'POST',
+                data: { 'projectTeamId': projectTeamId,'projectId': @Model.projectId, 'roleId': roleId, 'resourceId': resourceId },
+                success: function (data) {
+                    if (!data == "") {
+                        alert(data);
+                    }
+                    $('#teamTab').click();
+                },
+            });
+        }
+    });
+
+    function editUser(roleId, resourceId, projectTeamId) {
+        $('#insertUpdate').val('Update');
+        $('#role').val(roleId);
+        $('#resource').val(resourceId);
+        $('#projectTeamId').val(projectTeamId);
+    }
+
+    $('#cancelButton').on("click", function () {
+        $('#insertUpdate').val("Insert");
+        $('#role').val(1);
+        $('#resource').val(1);
+        $('#projectTeamId').val(0);
+
+    })
+</script>
+

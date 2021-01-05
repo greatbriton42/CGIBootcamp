@@ -1,0 +1,34 @@
+﻿<div class="sidebar-container">
+    <div>
+        <div class="sidebar-header">
+            <h2 style="padding:2px;">Forms</h2>
+        </div>
+        <div class="sidebar-body">
+            <p>
+                @Html.ActionLink("Today","ViewToday")
+                <br />
+                @Html.ActionLink("Project Maintenance","ProjectMaintenance", "ProjectMaintenance")
+                <br />
+                <a style="cursor:pointer">Administration</a>
+            </p>
+        </div>
+    </div>
+    <div>
+        <div class="sidebar-header">
+            <h2 style="padding:2px;">Reports</h2>
+        </div>
+        <div class="sidebar-body">
+            <p>
+                <a style="cursor:pointer">Flag</a>
+                <br />
+                <a href="http://localhost/Reports/report/SSRS/WeeklyTimeReport">Weekly Status</a>
+                <br />
+                <a style="cursor:pointer">Line Of Business</a>
+                <br />
+                <a style="cursor:pointer">Lessons Learned</a>
+                <br />
+                <a href="http://localhost/Reports">Report Server</a>
+            </p>
+        </div>
+    </div>
+</div>

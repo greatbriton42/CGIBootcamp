@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ParkingLotModelStoreContainer" CdmEntityContainer="ABCParkingLotEntities">
+    <EntitySetMapping Name="Addressses">
+      <EntityTypeMapping TypeName="ParkingLotModel.Addresss">
+        <MappingFragment StoreEntitySet="Addresss">
+          <ScalarProperty Name="AddressKey" ColumnName="AddressKey" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+          <ScalarProperty Name="CustomerKey" ColumnName="CustomerKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="ParkingLotModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="CustomerKey" ColumnName="CustomerKey" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KeyCards">
+      <EntityTypeMapping TypeName="ParkingLotModel.KeyCard">
+        <MappingFragment StoreEntitySet="KeyCard">
+          <ScalarProperty Name="KeyCardKey" ColumnName="KeyCardKey" />
+          <ScalarProperty Name="CustomerKey" ColumnName="CustomerKey" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+          <ScalarProperty Name="KeyCardNumber" ColumnName="KeyCardNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lots">
+      <EntityTypeMapping TypeName="ParkingLotModel.Lot">
+        <MappingFragment StoreEntitySet="Lot">
+          <ScalarProperty Name="LotKey" ColumnName="LotKey" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PricePerHour" ColumnName="PricePerHour" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParkingSpots">
+      <EntityTypeMapping TypeName="ParkingLotModel.ParkingSpot">
+        <MappingFragment StoreEntitySet="ParkingSpot">
+          <ScalarProperty Name="ParkingSpotKey" ColumnName="ParkingSpotKey" />
+          <ScalarProperty Name="LotKey" ColumnName="LotKey" />
+          <ScalarProperty Name="Label" ColumnName="Label" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionRecords">
+      <EntityTypeMapping TypeName="ParkingLotModel.TransactionRecord">
+        <MappingFragment StoreEntitySet="TransactionRecord">
+          <ScalarProperty Name="TransactionKey" ColumnName="TransactionKey" />
+          <ScalarProperty Name="ParkingSpotKey" ColumnName="ParkingSpotKey" />
+          <ScalarProperty Name="TimeIn" ColumnName="TimeIn" />
+          <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="KeyCardKey" ColumnName="KeyCardKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
